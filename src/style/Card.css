@@ -1,0 +1,7 @@
+.card-container {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    margin: 1em 1em 0 1em;
+    cursor: pointer;
+}

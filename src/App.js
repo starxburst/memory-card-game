@@ -1,25 +1,44 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState, useEffect } from "react";
+import Header from './components/Header';
+import Scoreboard from './components/Scoreboard';
+import Cardboard from './components/Cardboard';
 
 function App() {
+
+  const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
+
+  const increaseScore = () => {
+    setScore(score + 1);
+  }
+
+  const resetScore = () => {
+    setScore(0);
+  }
+
+  const checkBestScore = () => {
+    if (score >= bestScore) {
+      setBestScore(score);
+    }
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='header-container'>
+        <Header/>
+        <Scoreboard
+          score={score}
+          bestScore={bestScore}
+          checkBestScore={checkBestScore}/>
+      </div>
+      <div>
+        <Cardboard 
+          increaseScore={increaseScore}
+          resetScore={resetScore}/>
+      </div>
     </div>
-  );
+  )
 }
 
 export default App;
